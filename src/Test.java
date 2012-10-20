@@ -9,6 +9,6 @@
  */
 public class Test {
     public static void main(String args[]){
-        System.out.println("Solo de Prueba");
+        System.out.println("Solo de Prueba 2");
     }
 }
