@@ -24,5 +24,12 @@ public class TestTG1 {
             System.out.println("Se encontro F");
         else
             System.out.println("No se encontro F");
+        
+        cad = "anitalavalatina";
+        if( Recursiones.palindromo(cad) )
+            System.out.println("Es Palindromo");
+        else
+            System.out.println("NO es Palindromo");
+                
     }
 }

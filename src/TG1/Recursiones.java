@@ -12,6 +12,20 @@ public class Recursiones {
 
     private int array[] = { 3,5,6,8,1 };
     
+    //Tarea
+    public static boolean palindromo(String cad){
+        return palindromo(cad,0,cad.length()-1);
+    }
+    
+    private static boolean palindromo(String cad,int inicio,int fin){
+        if( inicio < fin ){
+            if( cad.charAt(inicio) != cad.charAt(fin) )
+                return false;
+            return palindromo(cad, inicio + 1, fin - 1);
+        }
+        return true;
+    }
+    
     //Prueba para las 6:40 y ejercicio de TG1 para 6:45
     public static boolean buscarEnCadena(String cad,char carac){
         return buscarEnCadena(cad, carac, 0);
