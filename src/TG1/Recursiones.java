@@ -10,7 +10,26 @@ package TG1;
  */
 public class Recursiones {
 
+    
     private int array[] = { 3,5,6,8,1 };
+    
+    //prueba 6:45
+    public static void piramide(int filas){
+        piramide(filas,0,0);
+    }
+    
+    private static void piramide(int filas, int fila,int col) {
+        if( fila < filas ){
+            if( col <= fila ){
+                System.out.print("*");
+                piramide(filas,fila,col+1);
+            }
+            else{
+                System.out.println("");
+                piramide(filas,fila+1,0);
+            }
+        }
+    }
     
     //Tarea
     public static boolean palindromo(String cad){

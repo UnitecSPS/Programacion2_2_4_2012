@@ -30,6 +30,9 @@ public class TestTG1 {
             System.out.println("Es Palindromo");
         else
             System.out.println("NO es Palindromo");
+        
+        System.out.println("");
+        Recursiones.piramide(5);
                 
     }
 }
