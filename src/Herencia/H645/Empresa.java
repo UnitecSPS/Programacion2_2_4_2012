@@ -1,19 +1,16 @@
-
-import Herencia.H645.*;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+package Herencia.H645;
 
 /**
  *
  * @author Gotcha
  */
-public class Test {
+public class Empresa {
     public static void main(String args[]){
-        Trabajador t = new Trabajador(1,"Carlos");
-        //t.tipo = TipoJerarquia.ESCLAVO;
+        Trabajador emp = new Empleado(1,"Carlos",4000);
         
     }
 }
