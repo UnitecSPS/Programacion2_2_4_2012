@@ -61,5 +61,17 @@ public class Trabajador {
         return tipo;
     }
     
+    public double calcularPago(){
+        return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "TRABAJOR";
+        //return "Trabajador{" + "codigo=" + codigo + ", nombre=" + nombre + ", ihss=" + ihss + ", fechanac=" + fechanac + ", fechainic=" + fechainic + ", tipo=" + tipo + '}';
+    }
+
+    
+    
     
 }

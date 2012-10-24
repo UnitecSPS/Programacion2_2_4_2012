@@ -13,7 +13,18 @@ public class Empleado extends Trabajador{
     
     public Empleado(int c,String n,double s){
         super(c,n);
-        salario = s;
-        
+        salario = s;       
+    }
+
+    @Override
+    public String toString() {
+        return "EMPLEADO";
+        //return super.toString() + "salario= " + salario;
+    }
+
+    @Override
+    public double calcularPago() {
+        double rap = salario * 0.035;
+        return salario - rap;
     }
 }
