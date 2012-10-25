@@ -17,5 +17,15 @@ public class DVD extends Item{
         duracion = d;
         
     }
+   
+    @Override
+    public double renta(int dias){
+        return 40 * dias;
+    }
+    
+    @Override
+    public String toString(){
+        return super.toString() + " duracion = " + duracion;
+    }
 
 }

@@ -56,6 +56,16 @@ public class Item {
     public String getTitulo() {
         return titulo;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "  Item{" + "id=" + id + ", titulo=" + titulo + '}';
+    }
+
+    public double renta(int cd){
+        return 0;
+    }
+    
     
     
 }
