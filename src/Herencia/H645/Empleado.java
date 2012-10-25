@@ -22,6 +22,10 @@ public class Empleado extends Trabajador{
         //return super.toString() + "salario= " + salario;
     }
 
+    public double getSalario() {
+        return salario;
+    }
+
     @Override
     public double calcularPago() {
         double rap = salario * 0.035;

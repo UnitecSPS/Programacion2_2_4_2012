@@ -23,6 +23,10 @@ public class EmpleadoPorHora extends Trabajador {
         return "EMP POR HORA";
         //return "EmpleadoPorHora{" + "horasT=" + horasT + '}';
     }
+
+    public int getHorasTrabajadas() {
+        return horasT;
+    }
     
     
     
