@@ -17,6 +17,10 @@ public class DVD extends Item{
         duracion = d;
         
     }
+
+    public double getDuracion() {
+        return duracion;
+    }
    
     @Override
     public double renta(int dias){

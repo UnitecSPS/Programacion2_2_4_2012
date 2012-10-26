@@ -22,7 +22,28 @@ public class VideoStore {
         for(Item it : lista){
             System.out.println(it);
             System.out.println("Renta: " + it.renta(1));
+            
+            if( it instanceof VideoGame ){
+                System.out.println("VIDEO GAME");
+            }
+            else if( it instanceof DVD){
+                System.out.println("DVD");
+            }
+            else{
+                System.out.println("ITEM");
+            }
         }
+        
+        //----------------------
+        //upcasting
+        Item ite = new DVD(4,"Piratas del Caribe",3,3.2);
+        //downcasting indirect
+        DVD dvd = (DVD)ite;
+        System.out.println("Duracion: " + dvd.getDuracion());
+        //dowcasting directo
+        System.out.println("Duracion: " + 
+                ((DVD)ite).getDuracion() );
+        
         
     }
 }

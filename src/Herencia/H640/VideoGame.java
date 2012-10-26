@@ -10,12 +10,21 @@ package Herencia.H640;
  */
 public class VideoGame extends Item {
     
+    private int dennis;
+    
     public VideoGame(int i, String n, int c){
         super(i,n, c);
+        dennis = 5;
     }
     
     @Override
     public double renta(int d){
         return 60 * d;
     }
+
+    public int getDennis() {
+        return dennis;
+    }
+    
+    
 }

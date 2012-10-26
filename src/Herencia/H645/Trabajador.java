@@ -67,8 +67,7 @@ public class Trabajador {
 
     @Override
     public String toString() {
-        return "TRABAJOR";
-        //return "Trabajador{" + "codigo=" + codigo + ", nombre=" + nombre + ", ihss=" + ihss + ", fechanac=" + fechanac + ", fechainic=" + fechainic + ", tipo=" + tipo + '}';
+        return "Trabajador{" + "codigo=" + codigo + ", nombre=" + nombre + ", ihss=" + ihss + ", fechanac=" + fechanac + ", fechainic=" + fechainic + ", tipo=" + tipo + '}';
     }
 
     

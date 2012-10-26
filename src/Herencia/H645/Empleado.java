@@ -9,7 +9,7 @@ package Herencia.H645;
  * @author Gotcha
  */
 public class Empleado extends Trabajador{
-    private double salario;
+    protected double salario;
     
     public Empleado(int c,String n,double s){
         super(c,n);
@@ -18,8 +18,7 @@ public class Empleado extends Trabajador{
 
     @Override
     public String toString() {
-        return "EMPLEADO";
-        //return super.toString() + "salario= " + salario;
+        return super.toString() + " Salario= " + salario;
     }
 
     public double getSalario() {
