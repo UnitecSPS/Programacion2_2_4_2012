@@ -10,21 +10,48 @@ package Herencia.H640;
  */
 public class VideoGame extends Item {
     
-    private int dennis;
+    private TipoConsola tipo;
+    private int max_players;
+    private String clasificacion;
     
-    public VideoGame(int i, String n, int c){
+    public VideoGame(int i, String n, int c,TipoConsola co){
         super(i,n, c);
-        dennis = 5;
+        tipo = co;
     }
     
     @Override
     public double renta(int d){
-        return 60 * d;
+        //es porque cada dia renta es igual a 3 dias
+        //ej lo llevo 6 dias , seria como que lo rentara 2 dias renta.
+        int dias = d / 3;
+        return tipo.getPrecio() * dias;
     }
 
-    public int getDennis() {
-        return dennis;
+    public TipoConsola getTipo() {
+        return tipo;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " tipo=" + tipo + '}';
+    }
+
+    public String getClasificacion() {
+        return clasificacion;
+    }
+
+    public int getMax_players() {
+        return max_players;
     }
     
-    
+    /**
+     * Configurar los datos restantes no inicializados en el
+     * constructor
+     * @param max Maximo de Jugadores
+     * @param c Clasificacion del juego
+     */
+    public void setDemasDatos(int max, String c){
+        max_players = max;
+        clasificacion = c;
+    }
 }

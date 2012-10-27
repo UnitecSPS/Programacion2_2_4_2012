@@ -10,12 +10,31 @@ package Herencia.H640;
  */
 
 public class DVD extends Item{
-    public double duracion;
+    private double duracion;
+    private TipoEstadoDVD estado;
+    private TipoPelicula tipo;
     
     public DVD(int i, String n, int c, double d){       
         super(i,n,c);
         duracion = d;
-        
+        estado = TipoEstadoDVD.ESTRENO;
+        tipo = TipoPelicula.INDEFINIDA;
+    }
+
+    public void setEstado(TipoEstadoDVD estado) {
+        this.estado = estado;
+    }
+
+    public void setTipo(TipoPelicula tipo) {
+        this.tipo = tipo;
+    }
+
+    public TipoEstadoDVD getEstado() {
+        return estado;
+    }
+
+    public TipoPelicula getTipo() {
+        return tipo;
     }
 
     public double getDuracion() {
@@ -24,7 +43,13 @@ public class DVD extends Item{
    
     @Override
     public double renta(int dias){
-        return 40 * dias;
+        double renta = 50;
+        
+        if( dias > estado.getMaxDias() ){
+            renta += 40 * (dias - estado.getMaxDias());
+        }
+        
+        return renta;
     }
     
     @Override

@@ -8,6 +8,6 @@ package Herencia.H640;
  *
  * @author Gotcha
  */
-public enum TipoPelicula {
-    COMEDIA, ACCION, DRAMA, HORROR, SUSPENSO, ANIMADA, INDEFINIDA
+public enum TipoItem {
+    DVD, GAME
 }

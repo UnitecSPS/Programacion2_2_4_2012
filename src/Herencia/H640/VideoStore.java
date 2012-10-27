@@ -17,7 +17,7 @@ public class VideoStore {
         
         lista.add( new Item(1,"Item General",2) );
         lista.add( new DVD(2,"Batman", 5, 3) );
-        lista.add( new VideoGame(3,"FIFA 13",3) );
+        lista.add( new VideoGame(3,"FIFA 13",3,TipoConsola.PS3) );
         
         for(Item it : lista){
             System.out.println(it);

@@ -17,7 +17,7 @@ public class TrabajadorTest {
         ArrayList<Trabajador> emps = new ArrayList<Trabajador>();
         emps.add(new Trabajador(1,"Carlos"));
         emps.add(new Empleado(2,"Edgardo",7000));
-        emps.add(new EmpleadoPorHora(3,"Edwin",80));
+        emps.add(new EmpleadoPorHora(3,"Edwin"));
         
         for(Trabajador t : emps){
             System.out.println(t);

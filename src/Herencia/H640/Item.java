@@ -66,6 +66,8 @@ public class Item {
         return 0;
     }
     
-    
+    public void devolver(){
+        copiasRenta++;
+    }
     
 }
