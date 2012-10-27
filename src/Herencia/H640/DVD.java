@@ -45,11 +45,15 @@ public class DVD extends Item{
     public double renta(int dias){
         double renta = 50;
         
-        if( dias > estado.getMaxDias() ){
-            renta += 40 * (dias - estado.getMaxDias());
+        if( copiasRenta > 0 ){
+            if( dias > estado.getMaxDias() ){
+                renta += 40 * (dias - estado.getMaxDias());
+            }
+            copiasRenta--;
+            return renta;
         }
         
-        return renta;
+        return 0;
     }
     
     @Override
