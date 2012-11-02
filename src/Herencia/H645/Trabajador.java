@@ -11,7 +11,7 @@ import java.util.Date;
  * @author Gotcha
  */
         
-public class Trabajador {
+public abstract class Trabajador {
     protected int codigo;
     protected String nombre;
     protected int ihss;
@@ -61,9 +61,7 @@ public class Trabajador {
         return tipo;
     }
     
-    public double calcularPago(){
-        return 0;
-    }
+    public abstract double calcularPago();
 
     @Override
     public String toString() {

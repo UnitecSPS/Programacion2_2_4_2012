@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class TrabajadorTest {
     public static void main(String args[]){
         ArrayList<Trabajador> emps = new ArrayList<Trabajador>();
-        emps.add(new Trabajador(1,"Carlos"));
+        //emps.add(new Trabajador(1,"Carlos"));
         emps.add(new Empleado(2,"Edgardo",7000));
         emps.add(new EmpleadoPorHora(3,"Edwin"));
         
