@@ -21,6 +21,7 @@ public class LaVia {
             m.movete();
             System.out.println("Gasolina: " + m.tipoGasolina());
             System.out.println("Medio: " + m.getMedio());
+            
         }
                 
     }
