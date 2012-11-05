@@ -31,4 +31,8 @@ public class Empresa {
             System.out.println(tra);
         }
     }
+    
+    public boolean buscar(int cod){
+        return empleados.contains(cod);
+    }
 }

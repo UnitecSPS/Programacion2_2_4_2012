@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class AnimalKingdom {
     public static void main(String args[]){
         ArrayList<Animal> animales = new ArrayList<Animal>();
+        //animales.contains(args);
         
         animales.add( new Perro() );
         animales.add(new Gato());
@@ -28,11 +29,6 @@ public class AnimalKingdom {
                 System.out.println("GHRER HEGRHEG REHGR");
             }
             
-            public String getS(){
-                pollito();
-                return "ON DEMAND";
-            }
-            
             public void pollito(){
                 System.out.println("Y QUE HAGO AQUI?");
             }
@@ -41,5 +37,21 @@ public class AnimalKingdom {
         anim.hablar();
         System.out.println("s: " + anim.getS());
         //System.out.println("Test: " + anim.test);
+        
+        
+        Animal an = Animal.getInstance("PERRO");
+        an.hablar();
+        
+        /*mithbuster final FAIL
+        Perro perr = new Perro(){
+            @Override
+          public void moverCola(){
+              System.out.println("SOy Perro Mutante");
+          }  
+        };
+        
+        //perr.moverCola();*/
     }
+    
+    
 }

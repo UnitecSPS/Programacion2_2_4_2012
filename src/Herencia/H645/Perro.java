@@ -8,15 +8,20 @@ package Herencia.H645;
  *
  * @author Gotcha
  */
-public class Perro extends Animal {
+public final class Perro extends Animal {
+    private int test;
+    
     public Perro(){
         super(4,true);
     }
 
+    public void moverCola(){
+        System.out.println("Toy Feliz");
+    }
+    
     @Override
     public void hablar() {
         System.out.println("GUAU GUAU GUAU");
     }
-    
-    
+   
 }

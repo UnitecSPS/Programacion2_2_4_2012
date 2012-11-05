@@ -56,7 +56,7 @@ public class Marina {
                     listarPasajeros();
                     break;
                 case 5:
-                    listarBarcos(0);
+                    listarBarcos(0,0,0);
                     
             }
         }while( op != 6 );
@@ -124,10 +124,21 @@ public class Marina {
         }
     }
 
-    private static void listarBarcos(int pos) {
+    private static void listarBarcos(int pos, int cpez, int cpasa) {
         if( pos < barcos.size() ){
             System.out.println(barcos.get(pos));
-            listarBarcos(pos + 1);
+            
+            if( barcos.get(pos) instanceof BarcoPesquero )
+                cpez++;
+            else if( barcos.get(pos) instanceof BarcoPasajero )
+                cpasa++;
+            
+            listarBarcos(pos + 1, cpez, cpasa);
         }
+        else{
+            System.out.println("# de Pesqueros: "+ cpez + 
+                    " # de Pasajeros: " + cpasa);
+        }
+        
     }
 }

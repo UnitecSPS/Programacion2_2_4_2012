@@ -19,9 +19,22 @@ public abstract class Animal {
         patas = p;
         mamifero = m;
     }
-   
     
-    public String getS(){
+    public static Animal getInstance(String tipo){
+        if( tipo.equals("PERRO"))
+            return new Perro();
+        return new Gato();
+    }
+
+    public boolean isMamifero() {
+        return mamifero;
+    }
+
+    public int getPatas() {
+        return patas;
+    }
+    
+    public final String getS(){
         //final int d;
         //d = 5; 
         //d = 5;

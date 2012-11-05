@@ -4,6 +4,8 @@
  */
 package Herencia.H645;
 
+import java.util.Calendar;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -14,10 +16,10 @@ public class Main {
     
     private static Empresa empresa;
     private static Scanner lea;
+    private static Calendar cal = Calendar.getInstance();
     
     public static void main(String args[]){
-        empresa = new Empresa("GOTCHA ASOCIADOS");
-        lea = new Scanner(System.in);
+        Random r;
         
         int op;
         
@@ -26,7 +28,8 @@ public class Main {
             System.out.println("2- Pagar Empleado");
             System.out.println("3- Imprimir Planilla");
             System.out.println("4- Modificar datos Empleado");
-            System.out.println("5- Salir");
+            System.out.println("5- Buscar Empleado");
+            System.out.println("6- Salir");
             System.out.println("\nEscoja opcion: ");
             op = lea.nextInt();
             
@@ -47,7 +50,7 @@ public class Main {
                     break;
                     
             }
-        }while( op != 5);
+        }while( op != 6);
         
     }
 
