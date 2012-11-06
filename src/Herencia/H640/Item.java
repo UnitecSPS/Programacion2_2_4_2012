@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Gotcha
  */
-public class Item {
+public abstract class Item {
     protected int id;
     protected String titulo;
     protected Date fecha;
@@ -62,9 +62,7 @@ public class Item {
         return super.toString() + "  Item{" + "id=" + id + ", titulo=" + titulo + '}';
     }
 
-    public double renta(int cd){
-        return 0;
-    }
+    public abstract double renta(int cd);
     
     public void devolver(){
         copiasRenta++;

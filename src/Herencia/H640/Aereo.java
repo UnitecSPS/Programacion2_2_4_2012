@@ -13,6 +13,7 @@ public abstract class Aereo extends MedioTransporte{
         super("aereo");
     }
     
+    @Override
     public String tipoGasolina(){
         return "NAPALM";
     }
