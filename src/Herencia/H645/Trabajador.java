@@ -68,7 +68,16 @@ public abstract class Trabajador {
         return "Trabajador{" + "codigo=" + codigo + ", nombre=" + nombre + ", ihss=" + ihss + ", fechanac=" + fechanac + ", fechainic=" + fechainic + ", tipo=" + tipo + '}';
     }
 
-    
-    
+    @Override
+    public boolean equals(Object trabajador){
+        if( trabajador instanceof Trabajador){
+            return ((Trabajador)trabajador).getCodigo() == codigo;
+        }
+        else if( trabajador instanceof Integer ){
+            return ((Integer)trabajador) == codigo;
+        }
+        
+        return false;
+    }
     
 }

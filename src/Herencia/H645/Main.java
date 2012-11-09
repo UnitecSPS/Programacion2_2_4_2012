@@ -14,18 +14,18 @@ import java.util.Scanner;
  */
 public class Main {
     
-    private static Empresa empresa;
+    private static ITrabajadorManagement empresa;
     private static Scanner lea;
     private static Calendar cal = Calendar.getInstance();
     
     public static void main(String args[]){
-        Random r;
-        
+        empresa = new Empresa("BAC");
+        lea = new Scanner(System.in);
         int op;
         
         do{
             System.out.println("1- Agregar Empleado");
-            System.out.println("2- Pagar Empleado");
+            System.out.println("2- (TODO)Pagar Empleado");
             System.out.println("3- Imprimir Planilla");
             System.out.println("4- Modificar datos Empleado");
             System.out.println("5- Buscar Empleado");
@@ -48,6 +48,13 @@ public class Main {
                 case 4:
                     submenu();
                     break;
+                case 5:
+                    System.out.println("Codigo: ");
+                    cod = lea.nextInt();
+                    if( empresa.buscarTrabajador(cod) )
+                        System.out.println("SE ENCONTRO");
+                    else
+                        System.out.println("NO SE ENCONTRO");
                     
             }
         }while( op != 6);
@@ -88,10 +95,29 @@ public class Main {
     }
 
     private static void pagarEmpleado(int cod) {
+        /*
+         * Aqui mandar a llamar la funcion que me
+         * retorna el pagar de un empleado
+         */
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
     private static void submenu() {
+        /*
+         * Este sub menu tiene las opciones de:
+         * 1- Registrar Horas Trabajadas
+         * 2- Registrar Venta
+         * 3- Actualizar Fecha de Nacimiento
+         * 4- Actualizar Numero de IHSS
+         * 5- Actualizar Tipo Jerarquia
+         * 6- Regresar Menu Principal
+         * 
+         * Y luego segun cada opcion se pide el codigo del
+         * trabajador y su dato extra segun la opcion.
+         * Una vez que se completa la accion se regresa a 
+         * este sub menu. SOLO se regresa a este menu si
+         * se selecciona la opcion 5.
+         */
         throw new UnsupportedOperationException("Not yet implemented");
     }
     

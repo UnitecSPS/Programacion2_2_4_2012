@@ -16,6 +16,7 @@ public abstract class Item {
     protected Date fecha;
     protected int copiasRenta;
     protected int copiasVenta;
+    public final static int version = 83;
 
     public Item(int i, String t, int cr){
         id = i;
@@ -49,7 +50,7 @@ public abstract class Item {
         return fecha;
     }
 
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
@@ -65,6 +66,7 @@ public abstract class Item {
     public abstract double renta(int cd);
     
     public void devolver(){
+        final String f = "TEST";
         copiasRenta++;
     }
     

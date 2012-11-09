@@ -9,7 +9,7 @@ package Herencia.H640;
  * @author Gotcha
  */
 
-public class DVD extends Item{
+public final class DVD extends Item{
     private double duracion;
     private TipoEstadoDVD estado;
     private TipoPelicula tipo;
@@ -19,6 +19,7 @@ public class DVD extends Item{
         duracion = d;
         estado = TipoEstadoDVD.ESTRENO;
         tipo = TipoPelicula.INDEFINIDA;
+        
     }
 
     public void setEstado(TipoEstadoDVD estado) {
@@ -60,5 +61,6 @@ public class DVD extends Item{
     public String toString(){
         return super.toString() + " duracion = " + duracion;
     }
+   
 
 }
