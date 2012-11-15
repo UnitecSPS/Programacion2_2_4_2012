@@ -26,8 +26,13 @@ public class EmpleadoPorVenta extends Empleado{
         return ventas;
     }
     
-    public void setVentas(double v){
-        ventas = v;
+    public void setVentas(double v)throws NotValidValueException{
+        if( v >= 0 ){
+            ventas = v;
+        }
+        else{
+            throw new NotValidValueException(v);
+        }
     }
 
     @Override

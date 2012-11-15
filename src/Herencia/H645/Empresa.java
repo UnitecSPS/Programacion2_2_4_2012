@@ -59,13 +59,18 @@ public class Empresa implements ITrabajadorManagement{
     }
 
     @Override
-    public void setHorasTrabajadas(int cod, int horast) {
-        /*
-         * TODO: Busca un empleado dentro de la coleccion con ese
-         * codigo que recibe de parametro. Si se encuentra se valida
-         * que sea de tipo EmpleadoPorHora. SI LO ES se actualiza sus
-         * horas trabajadas segun el parametro horasT
-         */
+    public void setHorasTrabajadas(int cod, int horast)throws NotValidValueException {
+        for(Trabajador t : empleados){
+            if( t.getCodigo() == cod ){
+                if( t instanceof EmpleadoPorHora ){
+                    ((EmpleadoPorHora)t).setHorasTrabajadas(horast);
+                }
+                else{
+                    System.out.println("El Empleado es de un tipo Incorrecto");
+                }
+                break;
+            }
+        }
     }
 
     @Override

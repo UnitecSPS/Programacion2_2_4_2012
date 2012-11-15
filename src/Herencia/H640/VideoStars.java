@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author Gotcha
  */
-public class VideoStars {
+public class VideoStars implements IManagementItems{
     private ArrayList<Item> items;
     private Scanner lea;
     
@@ -36,7 +36,7 @@ public class VideoStars {
         
         if( tipo == TipoItem.DVD ){
             System.out.print("Duracion: ");
-            int dur = lea.nextInt();
+            double dur = lea.nextDouble();
             
             items.add( new DVD(cod, n, co, dur) );
         }

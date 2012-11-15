@@ -21,6 +21,9 @@ public class VideoGame extends Item {
     
     @Override
     public double renta(int d){
+        if( d < 0 || d > 31 )
+            throw new InvalidDaysException(d);
+        
         //es porque cada dia renta es igual a 3 dias
         //ej lo llevo 6 dias , seria como que lo rentara 2 dias renta.
         if( copiasRenta> 0 ){

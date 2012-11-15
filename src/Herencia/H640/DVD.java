@@ -44,6 +44,10 @@ public final class DVD extends Item{
    
     @Override
     public double renta(int dias){
+        
+        if( dias < 0 || dias > 365 )
+            throw new InvalidDaysException(dias);
+        
         double renta = 50;
         
         if( copiasRenta > 0 ){

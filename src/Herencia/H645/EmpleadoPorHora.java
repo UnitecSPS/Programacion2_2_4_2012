@@ -28,8 +28,11 @@ public class EmpleadoPorHora extends Trabajador {
         return horasT;
     }
     
-    public void setHorasTrabajadas(int ht){
-        horasT = ht;
+    public void setHorasTrabajadas(int ht)throws NotValidValueException{
+        if( ht >=0 && ht <= 500)
+            horasT = ht;
+        else
+            throw new NotValidValueException(ht);
     }
 
     @Override

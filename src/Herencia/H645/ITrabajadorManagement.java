@@ -13,7 +13,7 @@ public interface ITrabajadorManagement {
     void imprimirPlanilla();
     boolean buscarTrabajador(int cod);
     double pagarATrabajador(int cod);
-    void setHorasTrabajadas(int cod, int horast);
+    void setHorasTrabajadas(int cod, int horast)throws NotValidValueException;
     void setVentas(int cod, double vent);
     void setFechaNacimiento(int cod, java.util.Date fecha);
     /*

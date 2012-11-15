@@ -5,6 +5,7 @@
 package Herencia.H645;
 
 import java.util.Calendar;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -21,7 +22,7 @@ public class Main {
     public static void main(String args[]){
         empresa = new Empresa("BAC");
         lea = new Scanner(System.in);
-        int op;
+        int op = 0;
         
         do{
             System.out.println("1- Agregar Empleado");
@@ -31,34 +32,49 @@ public class Main {
             System.out.println("5- Buscar Empleado");
             System.out.println("6- Salir");
             System.out.println("\nEscoja opcion: ");
-            op = lea.nextInt();
             
-            switch( op ){
-                case 1:
-                    crearEmpleado();
-                    break;
-                case 2:
-                    System.out.println("Codigo: ");
-                    int cod = lea.nextInt();
-                    pagarEmpleado(cod);
-                    break;
-                case 3:
-                    empresa.imprimirPlanilla();
-                    break;
-                case 4:
-                    submenu();
-                    break;
-                case 5:
-                    System.out.println("Codigo: ");
-                    cod = lea.nextInt();
-                    if( empresa.buscarTrabajador(cod) )
-                        System.out.println("SE ENCONTRO");
-                    else
-                        System.out.println("NO SE ENCONTRO");
-                    
+            try{
+                op = lea.nextInt();
+
+
+                switch( op ){
+                    case 1:
+                        crearEmpleado();
+                        break;
+                    case 2:
+                        System.out.println("Codigo: ");
+                        int cod = lea.nextInt();
+                        pagarEmpleado(cod);
+                        break;
+                    case 3:
+                        empresa.imprimirPlanilla();
+                        break;
+                    case 4:
+                        System.out.print("Codigo: ");
+                        cod = lea.nextInt();
+                        System.out.print("HORAS t: ");
+                        int ht = lea.nextInt();
+                        empresa.setHorasTrabajadas(cod, ht);
+                        //submenu();
+                        break;
+                    case 5:
+                        System.out.println("Codigo: ");
+                        cod = lea.nextInt();
+                        if( empresa.buscarTrabajador(cod) )
+                            System.out.println("SE ENCONTRO");
+                        else
+                            System.out.println("NO SE ENCONTRO");
+
+                }
+             }
+            catch(InputMismatchException e){
+                lea.next();
+                System.out.println("Escriba un entero");
+            }
+            catch(Exception e){
+                System.out.println("ERROR: " + e.getMessage());
             }
         }while( op != 6);
-        
     }
 
     private static void crearEmpleado() {
