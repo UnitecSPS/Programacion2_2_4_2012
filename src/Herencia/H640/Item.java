@@ -63,7 +63,7 @@ public abstract class Item {
         return super.toString() + "  Item{" + "id=" + id + ", titulo=" + titulo + '}';
     }
 
-    public abstract double renta(int cd);
+    public abstract double renta(int cd) throws InvalidDaysException;
     
     public void devolver(){
         final String f = "TEST";

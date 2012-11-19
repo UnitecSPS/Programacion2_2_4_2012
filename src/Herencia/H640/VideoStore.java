@@ -12,7 +12,7 @@ import java.util.Calendar;
  * @author Gotcha
  */
 public class VideoStore {
-    public static void main(String args[]){
+    public static void main(String args[])throws InvalidDaysException{
         //downcasting
         ArrayList<Item> lista = new ArrayList<Item>();
         

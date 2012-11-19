@@ -11,7 +11,7 @@ package Herencia.H640;
 public interface IManagementItems {
     public void agregarItem(TipoItem tipo);
     public Item buscar(int codigo);
-    public double rentar(int codigo, int dias);
+    public double rentar(int codigo, int dias)throws InvalidDaysException;
     public void imprimir();
     public void CambiarEstadoPelicula(int cod, boolean isKid);
 }

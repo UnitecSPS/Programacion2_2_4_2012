@@ -58,7 +58,7 @@ public class GameMovieStore {
         
     }
 
-    private static void rentarUnItem() {
+    private static void rentarUnItem()throws InvalidDaysException {
         System.out.print("Codigo: ");
         int cod = lea.nextInt();
         System.out.print("Dias: ");

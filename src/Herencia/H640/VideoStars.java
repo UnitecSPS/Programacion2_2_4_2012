@@ -57,7 +57,8 @@ public class VideoStars implements IManagementItems{
         return null;
     }
     
-    public double rentar(int codigo, int dias){
+    @Override
+    public double rentar(int codigo, int dias)throws InvalidDaysException{
         Item it = buscar(codigo);
         
         if( it != null ){
@@ -68,6 +69,7 @@ public class VideoStars implements IManagementItems{
         return 0;
     }
     
+    @Override
     public void imprimir(){
         int cdvd = 0, cgame = 0;
         

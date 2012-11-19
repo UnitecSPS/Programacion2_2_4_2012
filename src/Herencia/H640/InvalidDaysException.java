@@ -8,7 +8,7 @@ package Herencia.H640;
  *
  * @author Gotcha
  */
-public class InvalidDaysException extends RuntimeException{
+public class InvalidDaysException extends Exception{
     public InvalidDaysException(int d){
         super(d + " son dias incorrectos.");
     }

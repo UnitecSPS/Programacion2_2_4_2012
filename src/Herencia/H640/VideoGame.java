@@ -20,7 +20,7 @@ public class VideoGame extends Item {
     }
     
     @Override
-    public double renta(int d){
+    public double renta(int d)throws InvalidDaysException{
         if( d < 0 || d > 31 )
             throw new InvalidDaysException(d);
         
