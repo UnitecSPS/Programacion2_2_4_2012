@@ -47,7 +47,7 @@ public class EmpresaBinaria implements ITrabajadorManagement{
             System.out.println("Error");
             return -1;
         }
-    }
+    }  
     
     @Override
     public void agregarEmpleado(Trabajador t) {
@@ -62,15 +62,15 @@ public class EmpresaBinaria implements ITrabajadorManagement{
             
             //tipo y dato
             double dato = 0, tasa = 0;
-            if( t instanceof Empleado ){
-                rTrab.writeUTF(TipoEmpleado.PORSALARIO.toString());
+            if( t instanceof EmpleadoPorVenta ){
+                rTrab.writeUTF(TipoEmpleado.PORCOMISION.toString());
                 dato = ((Empleado)t).getSalario();
+                tasa = ((EmpleadoPorVenta)t).getTasa();
             }else if( t instanceof EmpleadoPorHora ){
                 rTrab.writeUTF(TipoEmpleado.PORHORA.toString());
             }else{
-                rTrab.writeUTF(TipoEmpleado.PORCOMISION.toString());
-                dato = ((EmpleadoPorVenta)t).getSalario();
-                tasa = ((EmpleadoPorVenta)t).getTasa();
+                rTrab.writeUTF(TipoEmpleado.PORSALARIO.toString());
+                dato = ((EmpleadoPorVenta)t).getSalario();              
             }
             //nombre
             rTrab.writeUTF(t.getNombre());
@@ -92,17 +92,77 @@ public class EmpresaBinaria implements ITrabajadorManagement{
 
     @Override
     public void imprimirPlanilla() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try{
+            rTrab.seek(0);
+            
+            while(rTrab.getFilePointer() < rTrab.length() ){
+                int cod = rTrab.readInt();
+                TipoEmpleado tipo = TipoEmpleado.valueOf(rTrab.readUTF());
+                String n = rTrab.readUTF();
+                int ihss = rTrab.readInt();
+                long fechanac = rTrab.readLong();
+                Date fechai = new Date(rTrab.readLong());
+                double dato = rTrab.readDouble();
+                double tasa = rTrab.readDouble();
+                
+                System.out.print(cod + " - " + n + 
+                        " IHSS: " + ihss);
+                
+                if( fechanac != -1 )
+                    System.out.print(" fecha nac: " + new Date(fechanac));
+                
+                System.out.print(" Fecha Inicio: " + fechai);
+                
+                switch(tipo){
+                    case PORSALARIO:
+                        System.out.print(" Salario: " + dato);
+                        break;
+                    case PORCOMISION:
+                        System.out.print(" Salario: " + dato +
+                                " tasa de comision: " + tasa);
+                        break;
+                    default:
+                        System.out.print(" Horas trabajadas: " + dato);
+                }
+                
+                System.out.println(" TIPO: " + tipo);
+            }
+        }
+        catch(IOException e){
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
     @Override
     public boolean buscarTrabajador(int cod) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try{
+            rTrab.seek(0);
+            while(rTrab.getFilePointer() < rTrab.length()){
+                if( rTrab.readInt() == cod )
+                    return true;
+                rTrab.readUTF();
+                rTrab.readUTF();
+                rTrab.seek(rTrab.getFilePointer()+ 36);
+            }
+            
+        }catch(IOException e){
+            System.out.println("Error: " + e.getMessage());
+        }
+        return false;
     }
 
     @Override
     public double pagarATrabajador(int cod) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try{
+            if( buscarTrabajador(cod) ){
+               //donde estaria el puntero de rTrab
+                TipoEmpleado tipo = TipoEmpleado.valueOf(rTrab.readUTF());
+                String nom = rTrab.readUTF();
+            }
+        }catch(IOException e){
+            System.out.println("Error: " + e.getMessage());
+        }
+        return 0;
     }
 
     @Override

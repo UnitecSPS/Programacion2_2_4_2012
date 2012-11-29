@@ -20,7 +20,7 @@ public class Main {
     private static Calendar cal = Calendar.getInstance();
     
     public static void main(String args[]){
-        empresa = new Empresa("BAC");
+        empresa = new EmpresaBinaria("BAC");
         lea = new Scanner(System.in);
         int op = 0;
         
