@@ -167,17 +167,65 @@ public class EmpresaBinaria implements ITrabajadorManagement{
 
     @Override
     public void setHorasTrabajadas(int cod, int horast) throws NotValidValueException {
+        /*
+         * TODO:
+         * Buscar el trabajador con ese codigo, asegurense que el trabajador
+         * sea de tipo PORHORA para luego actualizar sus horas trabajadas
+         */
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void setVentas(int cod, double vent) {
+        /*
+         * TODO:
+         * Recuerden que cada empleado por venta tiene su propio archivo de
+         * ventas, por lo que esta funcion simplemente agregara un nuevo
+         * registro de venta a ese archivo ventas_cod.tbr. Formato:
+         * 
+         * -double venta
+         * -long fecha en el momento de registro
+         * -boolean si ya esta pagado (por default va en false)
+         */
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void setFechaNacimiento(int cod, Date fecha) {
+        /*
+         * TODO:
+         * Buscar el empleado con ese codigo y actualizar la fecha
+         * de nacimiento con ese dato
+         */
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setIhss(int cod, int codIhss) {
+        /**
+         * TODO:
+         * Buscar el empleado con ese codigo y actualizar su dato
+         * de IHSS
+         */
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void longevo() {
+        /**
+         * Evaluar todo los empleados, e imprimir el empleado con mayor
+         * edad dentro de la empresa. Los empleados que tengan como -1
+         * en su dato de fecha de nacimiento no seran utilizados.
+         */
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    public void mayorVendedor(){
+        /*
+         * TODO:
+         * Imprime los datos del empleado por comision con el mayor
+         * registro de ventas en la historia de la empresa.
+         */
     }
     
 }

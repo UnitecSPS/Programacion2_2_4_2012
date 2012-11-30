@@ -16,6 +16,8 @@ public interface ITrabajadorManagement {
     void setHorasTrabajadas(int cod, int horast)throws NotValidValueException;
     void setVentas(int cod, double vent);
     void setFechaNacimiento(int cod, java.util.Date fecha);
+    void setIhss(int cod, int codIhss);
+    void longevo();
     /*
      * TODO:
      * Agregar :
