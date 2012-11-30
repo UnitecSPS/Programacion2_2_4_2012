@@ -107,5 +107,10 @@ public class VideoStars implements IManagementItems{
         else
             System.out.println("ITEM NO EXISTE");
     }
+
+    @Override
+    public boolean devolver(int codigo) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

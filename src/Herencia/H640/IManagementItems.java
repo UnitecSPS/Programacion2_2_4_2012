@@ -14,4 +14,5 @@ public interface IManagementItems {
     public double rentar(int codigo, int dias)throws InvalidDaysException;
     public void imprimir();
     public void CambiarEstadoPelicula(int cod, boolean isKid);
+    public boolean devolver(int codigo);
 }

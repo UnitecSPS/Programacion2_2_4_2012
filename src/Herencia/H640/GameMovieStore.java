@@ -16,7 +16,7 @@ public class GameMovieStore {
     static Scanner lea;
     
     public static void main(String[] args) {
-        store = new VideoStars();
+        store = new VideoStarsBinario();
         lea = new Scanner(System.in);
         int op = 0;
         
