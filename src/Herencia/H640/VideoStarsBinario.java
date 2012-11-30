@@ -96,12 +96,46 @@ public class VideoStarsBinario implements IManagementItems {
 
     @Override
     public void CambiarEstadoPelicula(int cod, boolean isKid) {
+        /*
+         * TODO:
+         * Buscar la pelicula con ese codigo, si se encuentra y es
+         * de tipo DVD se le cambia el estado. Recordar que lo que 
+         * se guarda es el ordinal del tipo. Si isKid es true el estado
+         * sera KIDS y si es falo el estado sera NORMAL
+         */
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean devolver(int codigo) {
+        /*
+         * TODO:
+         * Busca el item con ese codigo. Se evalua que la copia sea de la
+         * tienda. Si lo es ( copias renta debe ser <= que copias originales )
+         * Se aumenta +1 las copias renta. 
+         */
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    public void iItemsTaquilleros(Date desde){
+        /*
+         * TODO:
+         * Imprime el codigo - titulo - y el tipo del ITEM tanto para DVD
+         * como para VideoGame que MAS veces se han rentado desde una fecha
+         * dada de parametro hasta la actualidad. Solo se toma 
+         * en cuenta la cantidad de veces rentados no los dias que se lo
+         * llevaron
+         */
+    }
+    
+    public double gananciaGenerada(Date desde){
+        /*
+         * TODO:
+         * Retorna el total de monto generado por rentas de cualquier item
+         * desde una fecha dada de parametro hasta la actualidad
+         * 
+         */
+        return 0;
     }
     
 }
