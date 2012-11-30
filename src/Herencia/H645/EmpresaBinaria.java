@@ -158,6 +158,20 @@ public class EmpresaBinaria implements ITrabajadorManagement{
                //donde estaria el puntero de rTrab
                 TipoEmpleado tipo = TipoEmpleado.valueOf(rTrab.readUTF());
                 String nom = rTrab.readUTF();
+                rTrab.seek(rTrab.getFilePointer()+20);
+                double salohora = rTrab.readDouble();
+                double tasa = rTrab.readDouble();
+                double rap = salohora * 0.035;
+                
+                switch(tipo){
+                    case PORSALARIO:
+                        return salohora - rap;
+                    case PORCOMISION:
+                        return (salohora - rap) + comisionPendiente(cod, tasa);
+                    case PORHORA:
+                        return pagoPorHoras(salohora);
+                        
+                }
             }
         }catch(IOException e){
             System.out.println("Error: " + e.getMessage());
@@ -226,6 +240,37 @@ public class EmpresaBinaria implements ITrabajadorManagement{
          * Imprime los datos del empleado por comision con el mayor
          * registro de ventas en la historia de la empresa.
          */
+    }
+
+    private double pagoPorHoras(double horasT) {
+        double hn = 40, he = 0;
+        
+        if( horasT < 40 )
+            hn = horasT;
+        else
+            he = (horasT - 40 );
+        
+        double phn = hn * EmpleadoPorHora.PAGO_HORA_NORMAL;
+        double phe = he * EmpleadoPorHora.PAGO_HORA_EXTRA;
+        
+        return phn + phe;
+    }
+
+    private double comisionPendiente(int cod, double tasa) {
+        /*
+         * TODO:
+         * 1- Abrir el archivo de ventas para ese empleado
+         *    recordar que es ventas_cod.tbr
+         * 
+         *   double ventas
+         *   long fecha registro
+         *   boolean pagada o no
+         * 
+         * 2- Recorren el archivo y van acumulando el total
+         *   de ventas que no han sido pagadas aun
+         * 3-Retornan ese total de ventas * la tasa
+         */
+        return 0;
     }
     
 }

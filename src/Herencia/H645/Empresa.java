@@ -91,5 +91,15 @@ public class Empresa implements ITrabajadorManagement{
          */
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public void setIhss(int cod, int codIhss) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void longevo() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }
