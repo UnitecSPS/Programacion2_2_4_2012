@@ -71,6 +71,22 @@ public class VideoStarsBinario implements IManagementItems {
                 int copias = lea.nextInt();
                 rItems.writeInt(copias);
                 rItems.writeInt(copias);
+                //estado dvd o max players
+                int dato;
+                String peliocon;
+                        
+                if( tipo == TipoItem.GAME){
+                    System.out.print("Max Players: ");
+                    dato= lea.nextInt();
+                    System.out.print("Consola: ");
+                }
+                else{
+                    dato = TipoEstadoDVD.ESTRENO.ordinal();
+                    System.out.print("Tipo Pelicula: ");
+                }
+                peliocon = lea.next();
+                rItems.writeInt(dato);
+                rItems.writeUTF(peliocon);
                 
             }
         }
@@ -81,17 +97,91 @@ public class VideoStarsBinario implements IManagementItems {
 
     @Override
     public Item buscar(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException();
+    }
+    
+    public boolean buscarBinario(int codigo){
+        try{
+            rItems.seek(0);
+            
+            while(rItems.getFilePointer() < rItems.length() ){
+                if( codigo == rItems.readInt() ){
+                    return true;
+                }
+                
+                rItems.readUTF();//tipo
+                rItems.readUTF();//titulo
+                rItems.seek(rItems.getFilePointer()+20);
+                rItems.readUTF();
+            }
+        }
+        catch(IOException e){
+            System.out.println("ERROR");
+        }
+        return false;
     }
 
     @Override
     public double rentar(int codigo, int dias) throws InvalidDaysException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try{
+            if( buscarBinario(codigo) ){
+                String tipo = rItems.readUTF();
+                String titulo = rItems.readUTF();
+                rItems.readLong();
+                
+                long pos = rItems.getFilePointer();
+                int copias = rItems.readInt();
+                rItems.readInt();
+                int dato = rItems.readInt();
+                String peliocon = rItems.readUTF();
+                
+                if( copias > 0 ){
+                    double monto;
+                    //saco monto
+                    if( tipo.equals("DVD"))
+                        monto = MontoDVD(dias, dato);
+                    else
+                        monto = MontoGame(dias, peliocon);
+                    
+                    //registro renta
+                    registrarRenta(codigo,dias, monto);
+                    
+                    //actualizo copias
+                    rItems.seek(pos);
+                    rItems.writeInt(copias-1);
+                }
+                else
+                    System.out.println("No hat copias");
+            }
+        }
+        catch(IOException e){
+            System.out.println("ERROR");
+        }
+        return 0;
     }
 
     @Override
     public void imprimir() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try{
+            rItems.seek(0);
+            
+            while(rItems.length() > rItems.getFilePointer() ){
+                int cod = rItems.readInt();
+                TipoItem tipo = TipoItem.valueOf(rItems.readUTF());
+                String titulo = rItems.readUTF();
+                rItems.readLong();
+                int cr = rItems.readInt();
+                int co = rItems.readInt();
+                rItems.readInt();
+                String peliocon = rItems.readUTF();
+                
+                System.out.printf("%s %d-%s Copias Renta: %d Copias Totales: %d - %s\n",
+                        tipo.toString(), cod, titulo, cr, co, peliocon);
+            }
+        }
+        catch(IOException e){
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
     @Override

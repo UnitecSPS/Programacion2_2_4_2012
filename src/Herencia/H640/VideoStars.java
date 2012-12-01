@@ -49,6 +49,7 @@ public class VideoStars implements IManagementItems{
         }
     }
     
+    @Override
     public Item buscar(int codigo){
         for(Item it : items){
             if( it.getId() == codigo )

@@ -26,6 +26,10 @@ public abstract class Item {
         copiasVenta = 0;
     }
     
+    public Item(int cod){
+        id = cod;
+    }
+    
     public void setCopiasRenta(int copiasRenta) {
         this.copiasRenta = copiasRenta;
     }
