@@ -186,14 +186,30 @@ public class VideoStarsBinario implements IManagementItems {
 
     @Override
     public void CambiarEstadoPelicula(int cod, boolean isKid) {
-        /*
-         * TODO:
-         * Buscar la pelicula con ese codigo, si se encuentra y es
-         * de tipo DVD se le cambia el estado. Recordar que lo que 
-         * se guarda es el ordinal del tipo. Si isKid es true el estado
-         * sera KIDS y si es falo el estado sera NORMAL
-         */
-        throw new UnsupportedOperationException("Not supported yet.");
+        try{
+            if( buscarBinario(cod) ){
+                String tipo = rItems.readUTF();
+                String titulo = rItems.readUTF();
+                
+                //avanzo 16 bytes de la fecha y copias
+                rItems.seek(rItems.getFilePointer()+16);
+                
+                if( tipo.equals("DVD") ){
+                    System.out.printf("Cambiando %s a %s..\n", titulo,
+                            isKid ? "KIDS" : "NORMAL");
+                    //estoy justo antes del estado
+                    if( isKid )
+                        rItems.writeInt(TipoEstadoDVD.KIDS.ordinal());
+                    else
+                        rItems.writeInt(TipoEstadoDVD.NORMAL.ordinal());
+                }
+                else
+                    System.out.println("No es de tipo DVD");
+            }
+        }
+        catch(IOException e){
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
     @Override
@@ -204,10 +220,34 @@ public class VideoStarsBinario implements IManagementItems {
          * tienda. Si lo es ( copias renta debe ser <= que copias originales )
          * Se aumenta +1 las copias renta. 
          */
-        throw new UnsupportedOperationException("Not supported yet.");
+        try{
+            if( buscarBinario(codigo) ){
+                rItems.readUTF();//tipo
+                String titulo = rItems.readUTF();
+                rItems.readLong();//fecha
+                int cr = rItems.readInt();
+                int co = rItems.readInt();
+                
+                if( cr + 1 <= co ){
+                    //es mia
+                    System.out.printf("Devolviendo %s....\n\n", titulo);
+                    rItems.seek(rItems.getFilePointer()-8);
+                    rItems.writeInt(cr + 1);
+                    return true;
+                }
+                else
+                    System.out.println("COPIA NO ES MIA\n");
+            }
+            else
+                System.out.println("NO SE ENCUENTRA");
+        }
+        catch(IOException e){
+            System.out.println("Error: " + e.getMessage());
+        }
+        return false;
     }
     
-    public void iItemsTaquilleros(Date desde){
+    public void iItemsTaquilleros(Date desde)throws IOException{
         /*
          * TODO:
          * Imprime el codigo - titulo - y el tipo del ITEM tanto para DVD
@@ -216,16 +256,102 @@ public class VideoStarsBinario implements IManagementItems {
          * en cuenta la cantidad de veces rentados no los dias que se lo
          * llevaron
          */
+        rItems.seek(0);
+        int cantDVD = 0;
+        int codDVD = 0;
+        String nDVD="";
+        
+        int cantGAME = 0;
+        int codGAME = 0;
+        String nGAME = "";
+        
+        while(rItems.getFilePointer() < rItems.length()){
+            int cod = rItems.readInt();
+            int total = rentasHechasPorCodigo(cod, desde);
+            String tipo = rItems.readUTF();
+            String titulo = rItems.readUTF();
+            rItems.readLong();
+            
+            if( tipo.equals("DVD")){
+                if( total > cantDVD ){
+                    cantDVD = total;
+                    codDVD = cod;
+                    nDVD = titulo;
+                    
+                }
+            }
+            else{
+                if( total > cantGAME ){
+                   cantGAME = total;
+                   codGAME = cod;
+                   nGAME = titulo;
+                    
+                }
+            }
+        }
+        
+        if( cantDVD != 0 )
+            System.out.printf("DVD TAQUILLERA %d-%s rentada %d veces.\n\n",
+                    codDVD, nDVD, cantDVD);
+        
+        if( cantGAME != 0 )
+            System.out.printf("GAME TAQUILLERO %d-%s rentado %d veces.\n\n",
+                    codGAME, nGAME, cantGAME);
     }
     
-    public double gananciaGenerada(Date desde){
+    public double gananciaGenerada(Date desde)throws IOException{
+        
         /*
          * TODO:
          * Retorna el total de monto generado por rentas de cualquier item
          * desde una fecha dada de parametro hasta la actualidad
          * 
          */
-        return 0;
+        rRentas.seek(0);
+        double tot = 0;
+        
+        while(rRentas.getFilePointer() < rRentas.length()){
+            rRentas.readInt(); //cod
+            rRentas.readUTF(); //cliente
+            Date fecha = new Date( rRentas.readLong() );
+            rRentas.readInt();//dias
+            double monto = rRentas.readDouble();
+            
+            if( fecha.getTime() >= desde.getTime() )
+                tot += monto;
+        }
+        
+        return tot;
+    }
+
+    private void registrarRenta(int codigo, int dias, double monto) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private double MontoGame(int dias, String peliocon) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private double MontoDVD(int dias, int dato) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private int rentasHechasPorCodigo(int cod, Date desde)throws IOException {
+        rRentas.seek(0);
+        int tot = 0;
+        
+        while(rRentas.getFilePointer() < rRentas.length()){
+            int codigo = rRentas.readInt();
+            rRentas.readUTF();
+            Date fecha = new Date(rRentas.readLong());
+            rRentas.readInt();//dias
+            rRentas.readDouble();//pago
+            
+            if( codigo == cod && fecha.getTime() >= desde.getTime() )
+                tot++;
+        }
+        
+        return tot;
     }
     
 }
