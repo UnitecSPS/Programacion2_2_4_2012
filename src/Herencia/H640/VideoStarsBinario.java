@@ -228,7 +228,7 @@ public class VideoStarsBinario implements IManagementItems {
                 int cr = rItems.readInt();
                 int co = rItems.readInt();
                 
-                if( cr + 1 <= co ){
+                if( cr < co ){
                     //es mia
                     System.out.printf("Devolviendo %s....\n\n", titulo);
                     rItems.seek(rItems.getFilePointer()-8);

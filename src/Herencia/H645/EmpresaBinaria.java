@@ -420,8 +420,12 @@ public class EmpresaBinaria implements ITrabajadorManagement{
         while(rVenta.getFilePointer() < rVenta.length() ){
             double v = rVenta.readDouble();
             rVenta.readLong();
-            if( !rVenta.readBoolean() )
+      
+            if( !rVenta.readBoolean() ){
                 total += v;
+                rVenta.seek(rVenta.getFilePointer()-1);
+                rVenta.writeBoolean(true);
+            }
         }
         
         return total * tasa;
