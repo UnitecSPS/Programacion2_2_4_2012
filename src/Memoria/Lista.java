@@ -69,4 +69,63 @@ public class Lista {
         
         return cont;
     }
+    
+    public boolean contain(Nodo obj){
+        return objectOf(obj) != null;
+    }
+
+    public Nodo objectOf(Nodo obj) {
+        if( obj != null ){
+            Nodo v = raiz;
+            
+            while(v != null){
+                if(v.codigo == obj.codigo &&
+                   v.nombre.equals(obj.nombre) )
+                    
+                    return v;
+                v = v.siguiente;
+            }
+        }
+        
+        return null;
+    }
+    
+    public boolean remove(int codigo){
+        if( raiz != null && raiz.codigo == codigo ){
+            raiz = raiz.siguiente;
+            return true;
+        }
+        else{
+            Nodo v = raiz;
+            while(v.siguiente != null){
+                if( v.siguiente.codigo == codigo ){
+                    v.siguiente = v.siguiente.siguiente;
+                    return true;
+                }
+                v = v.siguiente;
+            }
+            return false;
+        }
+    }
+    
+    public Nodo[] toArray(){
+        int longitud = size();
+        Nodo array[] = new Nodo[longitud];
+        Nodo v = raiz;
+        
+        for(int x = 0; x < longitud; x++){
+            array[x] = v.clone();
+            v = v.siguiente;
+        }
+        
+        return array;
+    }
+    
+    public void clear(){
+        
+    }
+    
+    public boolean addAfter(int afterCodigo, Nodo newNodo){
+        return false;
+    }
 }

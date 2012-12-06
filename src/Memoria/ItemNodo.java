@@ -12,11 +12,13 @@ public class ItemNodo {
     public int codigo;
     public String titulo;
     public double precio;
+    public ItemNodo siguiente;
 
     public ItemNodo(int codigo, String titulo, double precio) {
         this.codigo = codigo;
         this.titulo = titulo;
         this.precio = precio;
+        siguiente = null;
     }
 
     @Override

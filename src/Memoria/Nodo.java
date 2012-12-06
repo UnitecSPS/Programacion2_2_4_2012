@@ -8,7 +8,7 @@ package Memoria;
  *
  * @author Gotcha
  */
-public class Nodo {
+public class Nodo implements Cloneable{
     public int codigo;
     public String nombre;
     public Nodo siguiente;
@@ -22,6 +22,17 @@ public class Nodo {
     @Override
     public String toString() {
         return "Nodo{" + "codigo=" + codigo + ", nombre=" + nombre + '}';
+    }
+    
+    @Override
+    public Nodo clone(){
+        try{
+            return (Nodo)super.clone();
+        }
+        catch(Exception e){
+            System.out.println("Error: " + e.getMessage());
+        }
+        return null;
     }
     
     
