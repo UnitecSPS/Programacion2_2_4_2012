@@ -49,4 +49,42 @@ public class ListItem {
         
         return count;
     }
+    
+    public boolean contain(ItemNodo obj){
+        return objectOf(obj) != null;
+    }
+
+    public ItemNodo objectOf(ItemNodo obj) {
+        ItemNodo ayu = raiz;
+        
+        while( ayu != null ){
+            if(ayu.codigo == obj.codigo &&
+                    ayu.titulo.equals(obj.titulo))
+                return ayu.clone();
+            ayu = ayu.siguiente;
+        }
+        
+        return null;
+    }
+    
+    public boolean remove(int codigo){
+         if( raiz != null ){
+             if( raiz.codigo == codigo ){
+                 raiz = raiz.siguiente;
+                 return true;
+             }
+             else{
+                 ItemNodo ayu = raiz;
+                 
+                 while(ayu.siguiente != null){
+                     if(ayu.siguiente.codigo == codigo){
+                         ayu.siguiente = ayu.siguiente.siguiente;
+                         return true;
+                     }
+                     ayu = ayu.siguiente;
+                 }
+             }
+         }
+         return false;
+    }
 }

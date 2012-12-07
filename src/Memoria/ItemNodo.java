@@ -8,7 +8,7 @@ package Memoria;
  *
  * @author Gotcha
  */
-public class ItemNodo {
+public class ItemNodo implements Cloneable {
     public int codigo;
     public String titulo;
     public double precio;
@@ -19,6 +19,17 @@ public class ItemNodo {
         this.titulo = titulo;
         this.precio = precio;
         siguiente = null;
+        
+    }
+    
+    @Override
+    public ItemNodo clone(){
+        try{
+            return (ItemNodo)super.clone();
+        }catch(Exception e){
+            System.out.println("error: "+ e.getMessage());
+            return null;
+        }
     }
 
     @Override

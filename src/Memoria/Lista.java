@@ -122,7 +122,7 @@ public class Lista {
     }
     
     public void clear(){
-        
+        raiz = null;
     }
     
     public boolean addAfter(int afterCodigo, Nodo newNodo){

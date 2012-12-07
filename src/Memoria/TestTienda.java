@@ -20,5 +20,28 @@ public class TestTienda {
         
         list.imprimir();
         System.out.println("\nTOTAL: " + list.size());
+        
+        ItemNodo buscar = new ItemNodo(1,"Pollito",0);
+        if( list.contain(buscar)){
+            System.out.println("Lo encontramos!");
+            ItemNodo found = list.objectOf(buscar);
+            System.out.println(found);
+            found.precio = 99.99;
+            
+        }
+        System.out.println("\n");
+        list.imprimir();
+        
+        if(list.remove(1))
+            System.out.println("Me vole la raiz");
+        if(list.remove(3))
+            System.out.println("Me vole la vaquita");
+        if(list.remove(5))
+            System.out.println("Me vole la cola");
+        if(!list.remove(1))
+            System.out.println("Ya existe el 1");
+        System.out.println("\nSIZE: " + list.size());
+        list.imprimir();
+        
     }
 }
