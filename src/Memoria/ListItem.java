@@ -4,6 +4,9 @@
  */
 package Memoria;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  *
  * @author Gotcha
@@ -86,5 +89,50 @@ public class ListItem {
              }
          }
          return false;
+    }
+    
+    public boolean addAfter(int afterCodigo, ItemNodo nuevo){
+        ItemNodo ayu = raiz;
+        
+        while(ayu != null){
+            if(ayu.codigo == afterCodigo){
+                nuevo.siguiente = ayu.siguiente;
+                ayu.siguiente = nuevo;
+                return true;
+            }
+            ayu = ayu.siguiente;
+        }
+        return false;
+    }
+    
+    public double costoTotal(){
+        ItemNodo ayu = raiz;
+        double tot = 0;
+        
+        while(ayu != null){
+            tot += ayu.precio;
+            ayu = ayu.siguiente;
+        }
+        
+        return tot;
+    }
+    
+    public void report(String txtPath)throws IOException{
+        FileWriter fw = new FileWriter(txtPath);
+        fw.write("Listado de Items\n---------------\n");
+        
+        ItemNodo ayu = raiz;
+        
+        while(ayu != null){
+            String dato = ayu.codigo + "- " + ayu.titulo + " L." +
+                    ayu.precio + "\n";
+            fw.write(dato);
+            ayu = ayu.siguiente;
+        }
+        fw.close();
+    }
+    
+    public void clear(){
+        raiz = null;
     }
 }

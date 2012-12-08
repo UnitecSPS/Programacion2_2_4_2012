@@ -43,5 +43,19 @@ public class TestTienda {
         System.out.println("\nSIZE: " + list.size());
         list.imprimir();
         
+        list.addAfter(2, new ItemNodo(6,"Caballito",1000));
+        list.addAfter(6, new ItemNodo(7,"Cabrita",78.9));
+        list.addAfter(4, new ItemNodo(8, "Conejito", 124.3));
+        System.out.println("\n");
+        list.imprimir();
+        
+        try{
+            list.report("items.doc");
+        }catch(Exception e){}
+        
+        System.out.println("\nPRECIO: " + list.costoTotal());
+        
+        list.clear();
+        System.out.println("\nSize: " + list.size());
     }
 }

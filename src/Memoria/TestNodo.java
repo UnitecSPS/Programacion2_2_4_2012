@@ -48,9 +48,30 @@ public class TestNodo {
         Nodo array[] = list.toArray();
         for(Nodo nd : array){
             System.out.println("Nodo: " + nd);
-            nd.nombre = nd.nombre + " HACKED!";
+            if(nd.siguiente != null)
+                nd.siguiente.nombre = nd.siguiente.nombre + " HACKED!";
         }
         
         list.imprimir();
+        
+        list.addAfter(2, new Nodo(6,"Jose Jose"));
+        list.addAfter(6, new Nodo(7,"Harry Potter"));
+        list.addAfter(9, new Nodo(8,"NADIEE"));
+        System.out.println("\n");
+        list.imprimir();
+        
+        try{
+            list.report("nodos.doc");
+            list.export("nodobins.nod");
+        }catch(Exception e){}
+        
+        Lista nueva = new Lista();
+        nueva.reloadFrom("nodobins.nod");
+        System.out.println("\nNUEVA LISTA:");
+        nueva.imprimir();
+        
+        Lista sub = list.subList(7);
+        System.out.println("\nSUB LISTA: ");
+        sub.imprimir();
     }
 }

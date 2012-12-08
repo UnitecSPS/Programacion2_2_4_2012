@@ -27,7 +27,9 @@ public class Nodo implements Cloneable{
     @Override
     public Nodo clone(){
         try{
-            return (Nodo)super.clone();
+            Nodo nclone = (Nodo)super.clone();
+            nclone.siguiente = null;
+            return nclone;
         }
         catch(Exception e){
             System.out.println("Error: " + e.getMessage());
