@@ -31,6 +31,7 @@ public class CMD {
         else if( cad.equals("mkdir")) mkdir();
         else if( cad.equals("newfile")) newFile(); 
         else if( cad.equals("cd")) cd();
+        else if( cad.equals("cd..")) cd(currentDir.getParent());
         else if( cad.equals("dir")) dir();
         else if( cad.equals("delete")) delete();
         else if( cad.equals("move")) move();
@@ -122,16 +123,13 @@ public class CMD {
             
             File f = new File(path);
             try{
-                if(path.equals("..")){
-                    cd(currentDir.getParent());
-                    return;
-                }else if( f.exists() ){
-                    if(f.isDirectory() && f.isAbsolute()){
-                        cd(path);
-                        return;
-                    }
-                    System.out.println("\nDirectorio invalido\n");
-                    return;
+                if( f.exists() ){
+                   if(f.isDirectory() && f.isAbsolute()){
+                       cd(path);
+                       return;
+                   }
+                   System.out.println("\nDirectorio invalido\n");
+                   return;
                 }
                 System.out.println("\nEl directorio no existe\n");               
             }catch(NullPointerException ex){
